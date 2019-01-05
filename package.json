@@ -1,0 +1,14 @@
+{
+  "name": "vocablist",
+  "version": "1.0.0",
+  "description": "Web application that helps you create and store foreign language words, you've just learnt.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Dariusz Dyrda",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
