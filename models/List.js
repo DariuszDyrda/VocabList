@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-let ListSchema = new mongoose.Schema({
+const ListSchema = new mongoose.Schema({
   name: String,
   description: String,
   words: [
@@ -9,6 +9,7 @@ let ListSchema = new mongoose.Schema({
       translation: String,
     },
   ],
+  date: { type: Date, default: Date.now },
 });
 
 module.exports = mongoose.model('list', ListSchema);

@@ -6,18 +6,20 @@
         </div>
     </h2>
     <div class="ui centered stackable link cards">
-        <div class="card">
-            <div class="content">
-                <div class="header">Elliot Fu</div>
-                <div class="description">
-                    Elliot Fu is a film-maker from New York.
+        <% lists.forEach(list => { %>
+            <div class="card">
+                    <div class="content">
+                        <div class="header"><%= list.name %></div>
+                        <div class="description">
+                                <%= list.description %>
+                        </div>
+                    </div>
+                    <div class="ui bottom attached green button">
+                        <i class="add icon"></i>
+                        Add new word
+                    </div>
                 </div>
-            </div>
-            <div class="ui bottom attached green button">
-                <i class="add icon"></i>
-                Add new word
-            </div>
-        </div>
+        <% }) %>
     </div>
 </div>
 <% include partials/footer %>
