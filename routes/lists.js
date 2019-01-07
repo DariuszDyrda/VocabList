@@ -11,9 +11,22 @@ router.get('/index', (req, res) => {
       console.log(err);
     }
     else {
-      res.render('index', {lists: lists});
+      res.render('lists/index', {lists: lists});
     }
   })
+});
+router.get('/index/new', (req, res) => {
+  res.render('lists/new');
+});
+router.post('/index', (req, res) => {
+  List.create(req.body.list, (err, list) => {
+    if(err) {
+        console.log(err);
+    }
+    else {
+      res.redirect('/index');
+    }
+});
 });
 
 module.exports = router;

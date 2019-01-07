@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const ListSchema = new mongoose.Schema({
   name: String,
   description: String,
+  language: String,
   words: [
     {
       original: String,

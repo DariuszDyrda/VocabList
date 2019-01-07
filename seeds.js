@@ -3,6 +3,7 @@ const List = require('./models/List');
 const data = [{
         name: 'Animals',
         description: 'Basic animals in Spanish',
+        language: 'ES',
         words: [
             {original: 'el perro', translation: 'dog'}, 
             {original: 'el gato', translation: 'cat'}, 
@@ -13,6 +14,7 @@ const data = [{
     {
         name: 'Jobs',
         description: 'Jobs in Engish with Polish translation',
+        language: 'ES',
         words: [
             {original: 'el perro', translation: 'dog'}, 
             {original: 'el gato', translation: 'cat'}, 
@@ -23,6 +25,7 @@ const data = [{
     {
         name: 'Buildings',
         description: 'Just some basic buildings',
+        language: 'ES',
         words: [
             {original: 'el perro', translation: 'dog'}, 
             {original: 'el gato', translation: 'cat'}, 
@@ -33,6 +36,7 @@ const data = [{
     {
         name: 'Education',
         description: 'Education realted vocabulary',
+        language: 'ES',
         words: [
             {original: 'el perro', translation: 'dog'}, 
             {original: 'el gato', translation: 'cat'}, 

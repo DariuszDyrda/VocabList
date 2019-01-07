@@ -1,4 +1,4 @@
-<% include partials/header %>
+<% include ../partials/header %>
 <div class="ui container">
     <h2 class="ui center aligned header">
         <div class="content">
@@ -7,9 +7,9 @@
     </h2>
     <div class="ui centered stackable link cards">
         <% lists.forEach(list => { %>
-            <div class="card">
+            <div class="card" href="/index/<%= list._id %>">
                     <div class="content">
-                        <div class="header"><%= list.name %></div>
+                        <div class="header"><%= list.name %><span style="float: right"><%= list.language %></span></div>
                         <div class="description">
                                 <%= list.description %>
                         </div>
@@ -22,4 +22,4 @@
         <% }) %>
     </div>
 </div>
-<% include partials/footer %>
+<% include ../partials/footer %>
