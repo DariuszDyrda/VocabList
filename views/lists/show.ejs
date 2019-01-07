@@ -1,0 +1,25 @@
+<% include ../partials/header %>
+<div class="ui container">
+    <h2 class="ui center aligned header">
+        <div class="content">
+            <%= list.name %>
+        </div>
+    </h2>
+    <table class="ui celled table">
+        <thead>
+            <tr>
+                <th>Word</th>
+                <th>Translation</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% list.words.forEach(word => { %>
+            <tr>
+                <td data-label="Word"><%= word.original %></td>
+                <td data-label="Translation"><%= word.translation %></td>
+            </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</div>
+<% include ../partials/footer %>

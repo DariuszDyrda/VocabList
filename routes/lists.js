@@ -28,5 +28,14 @@ router.post('/index', (req, res) => {
     }
 });
 });
+router.get('/index/:id', (req, res) => {
+  List.findById(req.params.id, (err, list) => {
+    if(err) {
+      console.log(err);
+    } else {
+      res.render('lists/show', {list: list});
+    }
+  });
+});
 
 module.exports = router;
