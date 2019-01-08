@@ -17,4 +17,14 @@ router.post('/index/:id/words', (req, res) => {
     });
   });
 
+  router.put('/index/:id/words/:wordId', (req, res) => {
+    Word.findByIdAndUpdate(req.params.wordId, req.body.word, function(err, word) {
+        if(err) {
+            console.log(err);
+        } else {
+            res.redirect("/index/"+req.params.id);
+        }
+    })
+  });
+
   module.exports = router;
