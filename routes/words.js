@@ -27,4 +27,14 @@ router.post('/index/:id/words', (req, res) => {
     })
   });
 
+  router.delete('/index/:id/words/:wordId', (req, res) => {
+    Word.findByIdAndRemove(req.params.wordId, function(err, word) {
+        if(err) {
+            console.log(err);
+        } else {
+            res.redirect("/index/"+req.params.id);
+        }
+    })
+  });
+
   module.exports = router;

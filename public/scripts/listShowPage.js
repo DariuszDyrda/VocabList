@@ -1,10 +1,8 @@
 $(document).ready(function () {
-    $("table").on("mouseover", ".wordRow", function () {
-        //$( this ).css("background-color", "blue");
-    })
-
-    $("table").on("click", ".wordRow td a", function () {
+    $("table").on("click", "#editButton", function () {
         $(this).parents("tr").next().toggleClass("hidden");
-    console.log("clicked");
-    })
+    });
+    $("table").on("click", "#removeButton", function () {
+        
+    });
 });

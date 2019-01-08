@@ -4,3 +4,6 @@
 .showed {
     display: block;
 }
+.wordRow form {
+    float: right;
+}
