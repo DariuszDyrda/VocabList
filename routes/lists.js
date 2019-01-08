@@ -1,5 +1,6 @@
 const express = require('express');
 const List = require('../models/List');
+const Word = require('../models/Word');
 const router = express.Router();
 
 router.get('/', (req, res) => {
@@ -29,7 +30,7 @@ router.post('/index', (req, res) => {
 });
 });
 router.get('/index/:id', (req, res) => {
-  List.findById(req.params.id, (err, list) => {
+  List.findById(req.params.id).populate('words').exec(function(err, list) {
     if(err) {
       console.log(err);
     } else {
@@ -42,7 +43,9 @@ router.post('/index/:id', (req, res) => {
     if(err) {
       console.log(err);
     } else {
-      list.words.push(req.body.word);
+      let word = new Word(req.body.word);
+      word.save();
+      list.words.push(word);
       list.save();
       res.redirect(`/index/${list._id}`);
     }

@@ -6,9 +6,9 @@ const ListSchema = new mongoose.Schema({
   language: String,
   words: [
     {
-      original: String,
-      translation: String,
-    },
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Word',
+    }
   ],
   date: { type: Date, default: Date.now },
 });

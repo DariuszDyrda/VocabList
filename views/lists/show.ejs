@@ -25,7 +25,7 @@
                 </form>
             </tr>
             <% list.words.forEach(word => { %>
-            <tr>
+            <tr class="wordRow">
                 <td data-label="Word"><%= word.original %></td>
                 <td data-label="Translation"><%= word.translation %></td>
             </tr>
@@ -33,4 +33,5 @@
         </tbody>
     </table>
 </div>
+<script src="/scripts/listShowPage.js"></script>
 <% include ../partials/footer %>

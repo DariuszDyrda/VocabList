@@ -8,6 +8,7 @@ const seedDb = require('./seeds');
 const app = express();
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static('public'));
 app.use('/', listsRouter);
 
 mongoose.connect('mongodb://admin:developer1@ds026658.mlab.com:26658/vocablist_dev', { useNewUrlParser: true });
