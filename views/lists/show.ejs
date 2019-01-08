@@ -13,6 +13,17 @@
             </tr>
         </thead>
         <tbody>
+            <tr>
+                <form class="ui form" action="/index/<%= list._id %>" method="POST">
+                <td data-label="Word"><div class="ui input"><input type="text" name="word[original]" placeholder="Word"></div></td>
+                <td data-label="Translation">
+                    <div class="ui input">
+                        <input type="text" name="word[translation]" placeholder="Translation">
+                    </div>
+                    <button class="ui button" type="submit" style="float: right">Submit</button>
+                </td>
+                </form>
+            </tr>
             <% list.words.forEach(word => { %>
             <tr>
                 <td data-label="Word"><%= word.original %></td>

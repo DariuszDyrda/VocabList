@@ -37,5 +37,16 @@ router.get('/index/:id', (req, res) => {
     }
   });
 });
+router.post('/index/:id', (req, res) => {
+  List.findById(req.params.id, (err, list) => {
+    if(err) {
+      console.log(err);
+    } else {
+      list.words.push(req.body.word);
+      list.save();
+      res.redirect(`/index/${list._id}`);
+    }
+  });
+});
 
 module.exports = router;

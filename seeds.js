@@ -14,7 +14,7 @@ const data = [{
     {
         name: 'Jobs',
         description: 'Jobs in Engish with Polish translation',
-        language: 'ES',
+        language: 'EN',
         words: [
             {original: 'el perro', translation: 'dog'}, 
             {original: 'el gato', translation: 'cat'}, 
@@ -25,7 +25,7 @@ const data = [{
     {
         name: 'Buildings',
         description: 'Just some basic buildings',
-        language: 'ES',
+        language: 'GER',
         words: [
             {original: 'el perro', translation: 'dog'}, 
             {original: 'el gato', translation: 'cat'}, 
