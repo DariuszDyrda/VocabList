@@ -5,6 +5,8 @@ const Word = require('../models/Word');
 const User = require('../models/User');
 const router = express.Router();
 
+const middleware = require('../middleware/index');
+
 router.get('/', (req, res) => {
   res.render('landing');
 });
@@ -55,10 +57,10 @@ router.get('/index', (req, res) => {
   })
   }
 });
-router.get('/index/new', (req, res) => {
+router.get('/index/new', middleware.isLoggedIn, (req, res) => {
   res.render('lists/new');
 });
-router.post('/index', (req, res) => {
+router.post('/index', middleware.isLoggedIn, (req, res) => {
   List.create(req.body.list, (err, list) => {
     if(err) {
         console.log(err);
@@ -88,7 +90,7 @@ router.get('/index/:id', (req, res) => {
     }
   });
 });
-router.get('/index/:id/edit', (req, res) => {
+router.get('/index/:id/edit', middleware.checkListOwnership, (req, res) => {
   List.findById(req.params.id, function(err, list) {
     if(err) {
       console.log(err);
@@ -97,7 +99,7 @@ router.get('/index/:id/edit', (req, res) => {
     }
   })
 });
-router.put('/index/:id', (req, res) => {
+router.put('/index/:id', middleware.checkListOwnership, (req, res) => {
   List.findByIdAndUpdate(req.params.id, req.body.list, function(err, word) {
     if(err) {
         console.log(err);
@@ -106,7 +108,7 @@ router.put('/index/:id', (req, res) => {
     }
 })
 });
-router.delete('/index/:id', (req, res) => {
+router.delete('/index/:id', middleware.checkListOwnership, (req, res) => {
   List.findByIdAndRemove(req.params.id, function(err, word) {
     if(err) {
         console.log(err);

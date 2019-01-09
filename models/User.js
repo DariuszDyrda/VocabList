@@ -7,7 +7,7 @@ const User = new mongoose.Schema({
     lists: [
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'list',
+            ref: 'List',
         }
     ]
 });

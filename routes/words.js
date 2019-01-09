@@ -3,7 +3,9 @@ const List = require('../models/List');
 const Word = require('../models/Word');
 const router = express.Router();
 
-router.post('/index/:id/words', (req, res) => {
+const middleware = require('../middleware/index');
+
+router.post('/index/:id/words', middleware.checkListOwnership, (req, res) => {
     List.findById(req.params.id, (err, list) => {
       if(err) {
         console.log(err);
@@ -17,7 +19,7 @@ router.post('/index/:id/words', (req, res) => {
     });
   });
 
-  router.put('/index/:id/words/:wordId', (req, res) => {
+  router.put('/index/:id/words/:wordId', middleware.checkListOwnership, (req, res) => {
     Word.findByIdAndUpdate(req.params.wordId, req.body.word, function(err, word) {
         if(err) {
             console.log(err);
@@ -27,7 +29,7 @@ router.post('/index/:id/words', (req, res) => {
     })
   });
 
-  router.delete('/index/:id/words/:wordId', (req, res) => {
+  router.delete('/index/:id/words/:wordId', middleware.checkListOwnership, (req, res) => {
     Word.findByIdAndRemove(req.params.wordId, function(err, word) {
         if(err) {
             console.log(err);
