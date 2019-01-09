@@ -49,6 +49,7 @@
                     <% } %>
                 </td>
             </tr>
+            <% if(user && list.author.id.equals(user._id)) { %>
             <tr class="hidden">
                     <form class="ui form" action="/index/<%= list._id %>/words/<%= word._id %>?_method=PUT" method="POST">
                     <td data-label="Word"><div class="ui input"><input type="text" name="word[original]" value="<%= word.original %>"></div></td>
@@ -60,6 +61,7 @@
                     </td>
                     </form>
                 </tr>
+                <% } %>
             <% }) %>
         </tbody>
     </table>
