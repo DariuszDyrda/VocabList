@@ -56,5 +56,14 @@ router.put('/index/:id', (req, res) => {
     }
 })
 });
+router.delete('/index/:id', (req, res) => {
+  List.findByIdAndRemove(req.params.id, function(err, word) {
+    if(err) {
+        console.log(err);
+    } else {
+        res.redirect("/index/");
+    }
+})
+})
 
 module.exports = router;
