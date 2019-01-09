@@ -9,10 +9,12 @@
     <% if(list.author.username) { %>
         <p>Created by <%=list.author.username%></p>
     <% } %>
+    <% if(user && list.author.id.equals(user._id)) { %>
     <a href="/index/<%= list._id %>/edit" class="ui button" style="float: right">Edit</a>
     <form action="/index/<%= list._id %>?_method=DELETE" method="POST">
         <button class="ui button" style="float: right">Remove</button>
     </form>
+    <% } %>
     <table class="ui celled table">
         <thead>
             <tr>
@@ -21,6 +23,7 @@
             </tr>
         </thead>
         <tbody>
+            <% if(user && list.author.id.equals(user._id)) { %>
             <tr>
                 <form class="ui form" action="/index/<%= list._id %>/words" method="POST">
                 <td data-label="Word"><div class="ui input"><input type="text" name="word[original]" placeholder="Word"></div></td>
@@ -32,15 +35,18 @@
                 </td>
                 </form>
             </tr>
+            <% } %>
             <% list.words.forEach(word => { %>
             <tr class="wordRow">
                 <td data-label="Word"><%= word.original %></td>
                 <td data-label="Translation">
                     <span><%= word.translation %></span>
+                    <% if(user && list.author.id.equals(user._id)) { %>
                     <button id="editButton" class="ui button" style="float: right">Edit</button>
                     <form action="/index/<%= list._id %>/words/<%= word._id %>?_method=DELETE" method="POST">
                         <button id="removeButton" type="submit" class="ui button" style="float: right">Remove</button>
                     </form>
+                    <% } %>
                 </td>
             </tr>
             <tr class="hidden">

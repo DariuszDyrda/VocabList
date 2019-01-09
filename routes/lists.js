@@ -47,15 +47,18 @@ router.get('/index', (req, res) => {
       }
     })
   } else {
-      List.find({}, (err, lists) => {
+      res.redirect('/index/explore');
+  }
+});
+router.get('/index/explore', (req, res) => {
+  List.find({}, (err, lists) => {
     if(err) {
       console.log(err);
     }
     else {
       res.render('lists/index', {lists: lists});
     }
-  })
-  }
+  });
 });
 router.get('/index/new', middleware.isLoggedIn, (req, res) => {
   res.render('lists/new');
