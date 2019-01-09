@@ -22,15 +22,21 @@
                 Add new list
             </a>
             <div class="right menu">
-                <a class="item">
+            <% if(!user || user == undefined) {%>
+                <a class="item" href="/login">
                     Login
                 </a>
-                <a class="item">
+                <a class="item" href="/register">
                     Sign Up
                 </a>
+           <% } else { %>
                 <a class="item">
+                    Login as <%= user.username %>
+                </a>
+                <a class="item" href="/logout">
                     Logout
                 </a>
+            <% } %>
             </div>
         </div>
     </div>
