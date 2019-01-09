@@ -7,3 +7,6 @@
 .wordRow form {
     float: right;
 }
+.header.item a {
+    color: black;
+}
