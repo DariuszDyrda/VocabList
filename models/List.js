@@ -10,7 +10,14 @@ const ListSchema = new mongoose.Schema({
       ref: 'Word',
     }
   ],
+  author: {
+    id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User'
+    },
+    username: String,
+  },
   date: { type: Date, default: Date.now },
 });
 
-module.exports = mongoose.model('list', ListSchema);
+module.exports = mongoose.model('List', ListSchema);

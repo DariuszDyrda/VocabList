@@ -36,7 +36,16 @@ router.get('/logout', function(req, res) {
   res.redirect('/index');
 });
 router.get('/index', (req, res) => {
-  List.find({}, (err, lists) => {
+  if(req.user) {
+  User.findById(req.user._id).populate('lists').exec(function (err, user) {
+      if(err) {
+        console.log(err);
+      } else {
+        res.render('lists/index', {lists: user.lists});
+      }
+    })
+  } else {
+      List.find({}, (err, lists) => {
     if(err) {
       console.log(err);
     }
@@ -44,6 +53,7 @@ router.get('/index', (req, res) => {
       res.render('lists/index', {lists: lists});
     }
   })
+  }
 });
 router.get('/index/new', (req, res) => {
   res.render('lists/new');
@@ -54,6 +64,17 @@ router.post('/index', (req, res) => {
         console.log(err);
     }
     else {
+      list.author.id = req.user._id;
+      list.author.username = req.user.username;
+      list.save();
+      User.findById(req.user._id, (err, user) => {
+        if(err) {
+          console.log(err);
+        } else {
+          user.lists.push(list);
+          user.save();
+        }
+      });
       res.redirect('/index');
     }
 });
