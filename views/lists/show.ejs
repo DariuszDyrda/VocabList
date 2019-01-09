@@ -5,6 +5,9 @@
             <%= list.name %>
         </div>
     </h2>
+    <p><%= list.description %></p> 
+    <a href="/index/<%= list._id %>/edit" class="ui button" style="float: right">Edit</a>
+    <button class="ui button" style="float: right">Remove</button>
     <table class="ui celled table">
         <thead>
             <tr>

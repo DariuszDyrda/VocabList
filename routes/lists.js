@@ -38,5 +38,23 @@ router.get('/index/:id', (req, res) => {
     }
   });
 });
+router.get('/index/:id/edit', (req, res) => {
+  List.findById(req.params.id, function(err, list) {
+    if(err) {
+      console.log(err);
+    } else {
+      res.render('lists/edit', {list: list});
+    }
+  })
+});
+router.put('/index/:id', (req, res) => {
+  List.findByIdAndUpdate(req.params.id, req.body.list, function(err, word) {
+    if(err) {
+        console.log(err);
+    } else {
+        res.redirect("/index/"+req.params.id);
+    }
+})
+});
 
 module.exports = router;
