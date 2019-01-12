@@ -18,6 +18,9 @@ const ListSchema = new mongoose.Schema({
     username: String,
   },
   date: { type: Date, default: Date.now },
+  followedBy: [
+    {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
+  ]
 });
 
 module.exports = mongoose.model('List', ListSchema);

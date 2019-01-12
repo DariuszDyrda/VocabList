@@ -40,29 +40,29 @@ function seedDb() {
             console.log(err);
         }
     });
-    data.forEach(list => {
+    // data.forEach(list => {
 
-        List.create(list, (err, newList) => {
-            if(err) {
-                console.log(err);
-            } else {
-                words.forEach(word => {
-                    var word = new Word(word);
-                    word.save(function(err) {
-                        if(err) {
-                            console.log(err);
-                        }
-                    });
-                    newList.words.push(word);
-                })
-                newList.save(function(err) {
-                    if(err) {
-                        console.log(err);
-                    }
-                });
-            }
-        });
-    });
+    //     List.create(list, (err, newList) => {
+    //         if(err) {
+    //             console.log(err);
+    //         } else {
+    //             words.forEach(word => {
+    //                 var word = new Word(word);
+    //                 word.save(function(err) {
+    //                     if(err) {
+    //                         console.log(err);
+    //                     }
+    //                 });
+    //                 newList.words.push(word);
+    //             })
+    //             newList.save(function(err) {
+    //                 if(err) {
+    //                     console.log(err);
+    //                 }
+    //             });
+    //         }
+    //     });
+    // });
 }
 
 module.exports = seedDb;

@@ -56,7 +56,7 @@ router.get('/index/explore', (req, res) => {
       console.log(err);
     }
     else {
-      res.render('lists/index', {lists: lists});
+      res.render('lists/explore', {lists: lists});
     }
   });
 });
@@ -85,7 +85,7 @@ router.post('/index', middleware.isLoggedIn, (req, res) => {
 });
 });
 router.get('/index/:id', (req, res) => {
-  List.findById(req.params.id).populate('words').exec(function(err, list) {
+  List.findById(req.params.id).populate('words').populate('followedBy').exec(function(err, list) {
     if(err) {
       console.log(err);
     } else {
@@ -131,6 +131,27 @@ router.post('/index/:id/follow', middleware.isLoggedIn, (req, res) => {
         } else {
           user.followedLists.push(list);
           user.save();
+          list.followedBy.push(user);
+          list.save();
+          res.redirect('/index/'+req.params.id);
+        }
+      })
+    }
+  });
+})
+router.post('/index/:id/unfollow', (req, res) => {
+  List.findById(req.params.id, (err, list) => {
+    if(err) {
+      console.log(err);
+    } else {
+      User.findById(req.user._id, (err, user) => {
+        if(err) {
+          console.log(err);
+        } else {
+          user.followedLists.pop(list);
+          user.save();
+          list.followedBy.pop(user);
+          list.save();
           res.redirect('/index/'+req.params.id);
         }
       })

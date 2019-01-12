@@ -14,11 +14,15 @@
     <form action="/index/<%= list._id %>?_method=DELETE" method="POST">
         <button class="ui button" style="float: right">Remove</button>
     </form>
-    <% } else { %>
+    <% } else if(!user || !(list.followedBy.some((element) => {return element._id.equals(user._id)}))){ %>
         <form action="/index/<%= list._id %>/follow" method="POST">
             <button class="ui button" style="float: right">Follow</button>
         </form>
-    <% }%>
+    <% } else { %>
+        <form action="/index/<%= list._id %>/unfollow" method="POST">
+            <button class="ui button" style="float: right">Unfollow</button>
+        </form>
+    <% } %>
     <table class="ui celled table">
         <thead>
             <tr>
