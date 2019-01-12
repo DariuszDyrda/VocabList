@@ -9,6 +9,12 @@ const User = new mongoose.Schema({
             type: mongoose.Schema.Types.ObjectId,
             ref: 'List',
         }
+    ],
+    followedLists: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'List',
+        }
     ]
 });
 

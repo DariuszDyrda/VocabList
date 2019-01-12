@@ -39,11 +39,11 @@ router.get('/logout', function(req, res) {
 });
 router.get('/index', (req, res) => {
   if(req.user) {
-  User.findById(req.user._id).populate('lists').exec(function (err, user) {
+  User.findById(req.user._id).populate('lists').populate('followedLists').exec(function (err, user) {
       if(err) {
         console.log(err);
       } else {
-        res.render('lists/index', {lists: user.lists});
+        res.render('lists/index', {lists: user.lists, followedLists: user.followedLists});
       }
     })
   } else {
@@ -72,12 +72,12 @@ router.post('/index', middleware.isLoggedIn, (req, res) => {
       list.author.id = req.user._id;
       list.author.username = req.user.username;
       list.save();
-      User.findById(req.user._id, (err, user) => {
+      User.findById(req.user._id, async (err, user) => {
         if(err) {
           console.log(err);
         } else {
           user.lists.push(list);
-          user.save();
+          await user.save();
         }
       });
       res.redirect('/index');
@@ -119,6 +119,23 @@ router.delete('/index/:id', middleware.checkListOwnership, (req, res) => {
         res.redirect("/index/");
     }
 })
+});
+router.post('/index/:id/follow', middleware.isLoggedIn, (req, res) => {
+  List.findById(req.params.id, (err, list) => {
+    if(err) {
+      console.log(err);
+    } else {
+      User.findById(req.user._id, (err, user) => {
+        if(err) {
+          console.log(err);
+        } else {
+          user.followedLists.push(list);
+          user.save();
+          res.redirect('/index/'+req.params.id);
+        }
+      })
+    }
+  });
 })
 
 module.exports = router;

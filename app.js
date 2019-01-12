@@ -42,7 +42,7 @@ app.use('/', wordsRouter);
 
 mongoose.connect('mongodb://admin:developer1@ds026658.mlab.com:26658/vocablist_dev', { useNewUrlParser: true });
 
-seedDb();
+//seedDb();
 
 app.listen(3000, () => {
   console.log('The server has started!');

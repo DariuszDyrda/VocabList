@@ -14,7 +14,11 @@
     <form action="/index/<%= list._id %>?_method=DELETE" method="POST">
         <button class="ui button" style="float: right">Remove</button>
     </form>
-    <% } %>
+    <% } else { %>
+        <form action="/index/<%= list._id %>/follow" method="POST">
+            <button class="ui button" style="float: right">Follow</button>
+        </form>
+    <% }%>
     <table class="ui celled table">
         <thead>
             <tr>

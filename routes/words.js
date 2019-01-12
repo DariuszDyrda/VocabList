@@ -6,14 +6,14 @@ const router = express.Router();
 const middleware = require('../middleware/index');
 
 router.post('/index/:id/words', middleware.checkListOwnership, (req, res) => {
-    List.findById(req.params.id, (err, list) => {
+    List.findById(req.params.id, async (err, list) => {
       if(err) {
         console.log(err);
       } else {
         let word = new Word(req.body.word);
         word.save();
         list.words.push(word);
-        list.save();
+        await list.save();
         res.redirect(`/index/${list._id}`);
       }
     });
