@@ -64,14 +64,14 @@ router.get('/index/new', middleware.isLoggedIn, (req, res) => {
   res.render('lists/new');
 });
 router.post('/index', middleware.isLoggedIn, (req, res) => {
-  List.create(req.body.list, (err, list) => {
+  List.create(req.body.list, async (err, list) => {
     if(err) {
         console.log(err);
     }
     else {
       list.author.id = req.user._id;
       list.author.username = req.user.username;
-      list.save();
+      await list.save();
       User.findById(req.user._id, async (err, user) => {
         if(err) {
           console.log(err);
