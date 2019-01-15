@@ -40,7 +40,7 @@ app.use(function (req, res, next) {
 app.use('/', listsRouter);
 app.use('/', wordsRouter);
 
-//mongoose.connect(process.env.vocabAppDb, { useNewUrlParser: true });
+mongoose.connect(process.env.vocabAppDb, { useNewUrlParser: true });
 
 //seedDb();
 
