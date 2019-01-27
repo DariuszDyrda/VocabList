@@ -1,5 +1,8 @@
 const express = require('express');
 const passport = require('passport');
+const fs = require('fs');
+const pdf = require('html-pdf');
+const ejs = require('ejs');
 const List = require('../models/List');
 const Word = require('../models/Word');
 const User = require('../models/User');
@@ -119,6 +122,34 @@ router.delete('/index/:id', middleware.checkListOwnership, (req, res) => {
         res.redirect("/index/");
     }
 })
+});
+router.get('/index/:id/pdfexport' , (req, res) => {
+  List.findById(req.params.id).populate('words').exec(function(err, list) {
+    if(err) {
+      console.log(err);
+    } else {
+      ejs.renderFile('views/lists/show.ejs', {list: list, user: req.user}, function(err, str) {
+        if(err) {
+          console.log(err);
+        } else {
+            var options = { 
+              format: 'Letter',
+               border: {
+                top: "2cm",           
+                right: "1cm",
+                bottom: "2cm",
+                left: "1cm"
+            }
+           };
+  
+            pdf.create(str, options).toFile('./businesscard.pdf', function(err, res) {
+              if (err) return console.log(err);
+            });
+        }
+      })
+    }
+  });
+  
 });
 router.post('/index/:id/follow', middleware.isLoggedIn, (req, res) => {
   List.findById(req.params.id, (err, list) => {
