@@ -143,11 +143,14 @@ router.get('/index/:id/pdfexport' , (req, res) => {
            };
   
             pdf.create(str, options).toFile('./businesscard.pdf', function(err, res) {
-              if (err) return console.log(err);
+              if(err){
+                return console.log(err);
+              }
             });
         }
       })
     }
+    res.redirect('/index/'+req.params.id);
   });
   
 });
