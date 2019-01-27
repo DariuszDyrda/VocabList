@@ -40,10 +40,10 @@ app.use(function (req, res, next) {
 app.use('/', listsRouter);
 app.use('/', wordsRouter);
 
-mongoose.connect("mongodb://admin:developer1@ds026658.mlab.com:26658/vocablist_dev", { useNewUrlParser: true });
+mongoose.connect(process.env.vocabAppDb, { useNewUrlParser: true });
 
 //seedDb();
 
-app.listen(3000, () => {
+app.listen(process.env.PORT, () => {
   console.log('The server has started!');
 });
