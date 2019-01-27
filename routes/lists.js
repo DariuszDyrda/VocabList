@@ -128,7 +128,7 @@ router.get('/index/:id/pdfexport' , (req, res) => {
     if(err) {
       console.log(err);
     } else {
-      ejs.renderFile('views/lists/show.ejs', {list: list, user: req.user}, function(err, str) {
+      ejs.renderFile('views/lists/pdfexportTemplate.ejs', {list: list, user: req.user}, function(err, str) {
         if(err) {
           console.log(err);
         } else {
