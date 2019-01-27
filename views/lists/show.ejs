@@ -9,6 +9,9 @@
     <% if(list.author.username) { %>
         <p>Created by <%=list.author.username%></p>
     <% } %>
+
+    <a href="/index/<%= list._id %>/pdfexport" class="ui button" style="float: right">Export to PDF</a>
+    
     <% if(user && list.author.id.equals(user._id)) { %>
     <a href="/index/<%= list._id %>/edit" class="ui button" style="float: right">Edit</a>
     <form action="/index/<%= list._id %>?_method=DELETE" method="POST">
