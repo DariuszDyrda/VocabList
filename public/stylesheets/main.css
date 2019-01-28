@@ -1,7 +1,6 @@
 html, body{ height:100%; margin:0; }
 footer{ height:50px;}
 
-/* Trick */
 body{ 
   display:flex; 
   flex-direction:column; 
@@ -32,4 +31,32 @@ footer{
 }
 .showPageButtons > * {
     display: inline;
+}
+
+.ui.page.grid {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.ui.navbar {
+    margin-top: 0px !important;
+}
+
+.padding-reset{
+	padding: 0px !important;
+}
+
+.ui.message{
+	padding: 40px !important;
+}
+
+@media (max-width: 767px) {
+  	.ui.inverted.navbar{
+	}
+}
+
+.ui.vertical.menu{
+	margin-top: -15px !important;
+	width: 100%;
+	display: none;
 }
