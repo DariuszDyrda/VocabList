@@ -9,23 +9,24 @@
     <% if(list.author.username) { %>
         <p>Created by <%=list.author.username%></p>
     <% } %>
-
-    <a href="/index/<%= list._id %>/pdfexport" class="ui button" style="float: right">Export to PDF</a>
-    
-    <% if(user && list.author.id.equals(user._id)) { %>
-    <a href="/index/<%= list._id %>/edit" class="ui button" style="float: right">Edit</a>
-    <form action="/index/<%= list._id %>?_method=DELETE" method="POST">
-        <button class="ui button" style="float: right">Remove</button>
-    </form>
-    <% } else if(!user || !(list.followedBy.some((element) => {return element._id.equals(user._id)}))){ %>
-        <form action="/index/<%= list._id %>/follow" method="POST">
-            <button class="ui button" style="float: right">Follow</button>
+    <div class="showPageButtons">
+        <a href="/index/<%= list._id %>/pdfexport" class="ui button">Export to PDF</a>
+        
+        <% if(user && list.author.id.equals(user._id)) { %>
+        <a href="/index/<%= list._id %>/edit" class="ui button">Edit</a>
+        <form action="/index/<%= list._id %>?_method=DELETE" method="POST">
+            <button class="ui button">Remove</button>
         </form>
-    <% } else { %>
-        <form action="/index/<%= list._id %>/unfollow" method="POST">
-            <button class="ui button" style="float: right">Unfollow</button>
-        </form>
-    <% } %>
+        <% } else if(!user || !(list.followedBy.some((element) => {return element._id.equals(user._id)}))){ %>
+            <form action="/index/<%= list._id %>/follow" method="POST">
+                <button class="ui button" >Follow</button>
+            </form>
+        <% } else { %>
+            <form action="/index/<%= list._id %>/unfollow" method="POST">
+                <button class="ui button">Unfollow</button>
+            </form>
+        <% } %>
+    </div>
     <table class="ui celled table">
         <thead>
             <tr>

@@ -1,9 +1,20 @@
-.hidden {
-    display: none;
+html, body{ height:100%; margin:0; }
+footer{ height:50px;}
+
+/* Trick */
+body{ 
+  display:flex; 
+  flex-direction:column; 
 }
-.showed {
-    display: block;
+
+footer{
+  margin-top:auto; 
+  border-top: 1px solid rgba(34,36,38,.15);
+  text-align: center;
+  font-weight: 700;
+  padding-top: 10px;
 }
+ 
 .wordRow form {
     float: right;
 }
@@ -11,14 +22,14 @@
     color: black;
 }
 
-table {
-    margin-top: 20px;
+.ui.table:last-child {
     margin-bottom: 20px;
 }
-.footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    text-align: center;
-  }
+
+.showPageButtons {
+    float: right;
+    margin-bottom: 20px;
+}
+.showPageButtons > * {
+    display: inline;
+}
