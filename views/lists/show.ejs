@@ -49,33 +49,35 @@
             <% } %>
             <% list.words.forEach(word => { %>
             <tr class="wordRow">
-                <td data-label="Word"><%= word.original %></td>
+                <td data-label="Word"><span><%= word.original %></span></td>
                 <td data-label="Translation">
                     <span><%= word.translation %></span>
                     <% if(user && list.author.id.equals(user._id)) { %>
-                    <button id="editButton" class="ui button" style="float: right">Edit</button>
+                    <button class="ui button editButton" style="float: right" data-wordid="<%= word._id %>">Edit</button>
                     <form action="/index/<%= list._id %>/words/<%= word._id %>?_method=DELETE" method="POST">
-                        <button id="removeButton" type="submit" class="ui button" style="float: right">Remove</button>
+                        <button type="submit" class="ui button removeButton" style="float: right">Remove</button>
                     </form>
                     <% } %>
                 </td>
             </tr>
-            <% if(user && list.author.id.equals(user._id)) { %>
-            <tr class="hidden">
-                    <form class="ui form" action="/index/<%= list._id %>/words/<%= word._id %>?_method=PUT" method="POST">
-                    <td data-label="Word"><div class="ui input"><input type="text" name="word[original]" value="<%= word.original %>"></div></td>
-                    <td data-label="Translation">
-                        <div class="ui input">
-                            <input type="text" name="word[translation]" value="<%= word.translation %>">
-                        </div>
-                        <button class="ui button" type="submit" style="float: right">Submit</button>
-                    </td>
-                    </form>
-                </tr>
-                <% } %>
             <% }) %>
         </tbody>
     </table>
 </div>
+<div id="dialog-form" title="Edit word">
+   
+    <form id="editForm" class="ui form" action="/index/<%= list._id %>/words/" method="POST">
+      <fieldset>
+        <label for="word">Word</label>
+        <input type="text" name="word[original]" id="word" value="" class="text ui-widget-content ui-corner-all">
+        <label for="translation">Translation</label>
+        <input type="text" name="word[translation]" id="translation" value="" class="text ui-widget-content ui-corner-all">
+   
+        <!-- Allow form submission with keyboard without duplicating the dialog button -->
+        <button class="ui button" type="submit" style="float: right">Submit</button>
+        <!-- <input type="submit" tabindex="-1" style="position:absolute; top:-1000px"> -->
+      </fieldset>
+    </form>
+  </div>
 <script src="/scripts/listShowPage.js"></script>
 <% include ../partials/footer %>
