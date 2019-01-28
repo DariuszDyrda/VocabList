@@ -7,6 +7,7 @@
     </h2>
     <div class="ui centered stackable link cards">
         <% lists.forEach(list => { %>
+        <% if(!user || (user && list.author.username != user.username))  { %>
         <a class="card" href="/index/<%= list._id %>">
             <div class="content">
                 <div class="header">
@@ -21,6 +22,7 @@
                 Add new word
             </div>
         </a>
+        <% } %>
         <% }) %>
     </div>
 </div>
