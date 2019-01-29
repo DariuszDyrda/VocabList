@@ -22,32 +22,31 @@
         <div class="computer tablet only sixteen wide column">
             <div class="row">
                 <div class="ui menu navbar">
-                    <div class="header item">
-                        <a href="/index">VocabList</a>
-                    </div>
-                    <a class="item" href="/index/new">
-                        Add new list
-                    </a>
-                    <a class="item" href="/index/explore">
-                        Explore
-                    </a>
+                        <div class="header item">
+                                <a href="/index">VocabList</a>
+                            </div>
+                            <a class="item" href="/index/new">
+                                Add new list
+                            </a>
+                            <a class="item" href="/index/explore">
+                                Explore
+                            </a>
                     <div class="right menu">
-                        <% if(!user || user == undefined) {%>
-                        <a class="item" href="/login">
-                            Login
-                        </a>
-                        <a class="item" href="/register">
-                            Sign Up
-                        </a>
-                        <% } else { %>
-                        <a class="item">
-                            Login as
-                            <%= user.username %>
-                        </a>
-                        <a class="item" href="/logout">
-                            Logout
-                        </a>
-                        <% } %>
+                            <% if(!user || user == undefined) {%>
+                                <a class="item" href="/login">
+                                    Login
+                                </a>
+                                <a class="item" href="/register">
+                                    Sign Up
+                                </a>
+                           <% } else { %>
+                                <a class="item">
+                                    Login as <%= user.username %>
+                                </a>
+                                <a class="item" href="/logout">
+                                    Logout
+                                </a>
+                            <% } %>
                     </div>
                 </div>
             </div>
@@ -63,34 +62,34 @@
                     </div>
                 </div>
                 <div class="ui vertical navbar menu">
-                    <a class="item" href="/index/new">
-                        Add new list
-                    </a>
-                    <a class="item" href="/index/explore">
-                        Explore
-                    </a>
-                    <% if(!user || user == undefined) {%>
-                    <a class="item" href="/login">
-                        Login
-                    </a>
-                    <a class="item" href="/register">
-                        Sign Up
-                    </a>
-                    <% } else { %>
-                    <a class="item" href="/logout">
-                        Logout
-                    </a>
-                    <% } %>
+                        <a class="item" href="/index/new">
+                            Add new list
+                        </a>
+                        <a class="item" href="/index/explore">
+                            Explore
+                        </a>
+                            <% if(!user || user == undefined) {%>
+                                <a class="item" href="/login">
+                                    Login
+                                </a>
+                                <a class="item" href="/register">
+                                    Sign Up
+                                </a>
+                           <% } else { %>
+                                <a class="item" href="/logout">
+                                    Logout
+                                </a>
+                            <% } %>
                 </div>
             </div>
         </div>
     </div>
     <script>
-        $(document).ready(function () {
-            $('.right.menu.open').on("click", function (e) {
-                e.preventDefault();
-                $('.ui.vertical.menu').toggle();
-            });
-        });
+            $(document).ready(function () {
+              $('.right.menu.open').on("click", function (e) {
+                  e.preventDefault();
+                  $('.ui.vertical.menu').toggle();
+              });
+          });
     </script>
     <div class="wrapper">
