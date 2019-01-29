@@ -1,0 +1,43 @@
+.ui.page.grid {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.ui.navbar {
+    margin-top: 0px !important;
+}
+
+.ui.vertical.menu{
+	margin-top: -15px !important;
+	width: 100%;
+	display: none;
+}
+div.computer.tablet.only.sixteen.wide.column,
+div.mobile.only.sixteen.wide.column {
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+}
+* {
+    margin: 0;
+}
+html, body {
+    height: 100%;
+}
+.wrapper {
+    min-height: calc(100% - 60px); /* heigh of the footer + bottom and top margins must be substracted */
+    height: auto !important;
+    height: 100%;
+    margin: 10px auto -60px; /* the bottom margin is the negative value of the footer's height */
+}
+.footer, .push {
+    height: 50px; /* .push must be the same height as .footer */
+}
+.footer {
+    border-top: 1px solid rgba(34,36,38,.15);
+    text-align: center;
+    font-weight: 700;
+    padding-top: 10px;
+    margin-top: 10px;
+}

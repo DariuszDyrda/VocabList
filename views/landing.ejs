@@ -6,40 +6,78 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>VocabList App</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+        crossorigin="anonymous">
     <link rel="stylesheet" href="/stylesheets/landing.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
 </head>
 
 <body>
-    <div class="ui menu">
-        <div class="ui container">
-            <div class="header item">
-                <a href="/">VocabList</a>
+    <div class="ui page grid">
+        <div class="computer tablet only sixteen wide column">
+            <div class="row">
+                <div class="ui menu navbar">
+                    <div class="header item">
+                        <a href="/index">VocabList</a>
+                    </div>
+                    <a class="item" href="/index/explore">
+                        Explore
+                    </a>
+                    <div class="right menu">
+                        <% if(!user || user == undefined) {%>
+                        <a class="item" href="/login">
+                            Login
+                        </a>
+                        <a class="item" href="/register">
+                            Sign Up
+                        </a>
+                        <% } else { %>
+                        <a class="item">
+                            Login as
+                            <%= user.username %>
+                        </a>
+                        <a class="item" href="/logout">
+                            Logout
+                        </a>
+                        <% } %>
+                    </div>
+                </div>
             </div>
-            <a class="item" href="/index/explore">
-                Explore
-            </a>
-            <div class="right menu">
-                <% if(!user || user == undefined) {%>
-                <a class="item" href="/login">
-                    Login
-                </a>
-                <a class="item" href="/register">
-                    Sign Up
-                </a>
-                <% } else { %>
-                <a class="item">
-                    Login as
-                    <%= user.username %>
-                </a>
-                <a class="item" href="/logout">
-                    Logout
-                </a>
-                <% } %>
+        </div>
+        <div class="mobile only sixteen wide column">
+            <div class="row">
+                <div class="ui navbar menu">
+                    <a href="/index" class="brand item">VocabList</a>
+                    <div class="right menu open">
+                        <a href="" class="menu item">
+                            <i class="fas fa-bars"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ui vertical navbar menu">
+                    <a class="item" href="/index/explore">
+                        Explore
+                    </a>
+                    <% if(!user || user == undefined) {%>
+                    <a class="item" href="/login">
+                        Login
+                    </a>
+                    <a class="item" href="/register">
+                        Sign Up
+                    </a>
+                    <% } else { %>
+                    <a class="item" href="/logout">
+                        Logout
+                    </a>
+                    <% } %>
+                </div>
             </div>
         </div>
     </div>
-    <div class="ui container">
+    <div class="wrapper">
+        <div class="ui container">
             <h1 class="ui center aligned header">
                 <div class="content">
                     Keep track of your vocabulary!
@@ -50,7 +88,18 @@
                     Get started!
                 </a>
             </div>
+        </div>
+        <div class="push"></div>
     </div>
+    <div class="footer">Dariusz Dyrda 2019</div>
+    <script>
+        $(document).ready(function () {
+            $('.right.menu.open').on("click", function (e) {
+                e.preventDefault();
+                $('.ui.vertical.menu').toggle();
+            });
+        });
+    </script>
 </body>
 
 </html>

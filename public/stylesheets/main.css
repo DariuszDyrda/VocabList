@@ -13,28 +13,6 @@
     display: inline;
 }
 
-.ui.page.grid {
-    padding-left: 0px;
-    padding-right: 0px;
-}
-
-.ui.navbar {
-    margin-top: 0px !important;
-}
-
-.ui.vertical.menu{
-	margin-top: -15px !important;
-	width: 100%;
-	display: none;
-}
-div.computer.tablet.only.sixteen.wide.column,
-div.mobile.only.sixteen.wide.column {
-    margin-left: 0;
-    margin-right: 0;
-    padding-left: 0;
-    padding-right: 0;
-}
-
 * {
     margin: 0;
 }
