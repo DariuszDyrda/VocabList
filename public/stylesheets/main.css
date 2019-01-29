@@ -1,28 +1,8 @@
-html, body{ height:100%; margin:0; }
-footer{ height:50px;}
-
-body{ 
-  display:flex; 
-  flex-direction:column; 
-}
-
-footer{
-  margin-top:auto; 
-  border-top: 1px solid rgba(34,36,38,.15);
-  text-align: center;
-  font-weight: 700;
-  padding-top: 10px;
-}
- 
 .wordRow form {
     float: right;
 }
 .header.item a {
     color: black;
-}
-
-.ui.table:last-child {
-    margin-bottom: 20px;
 }
 
 .showPageButtons {
@@ -42,19 +22,6 @@ footer{
     margin-top: 0px !important;
 }
 
-.padding-reset{
-	padding: 0px !important;
-}
-
-.ui.message{
-	padding: 40px !important;
-}
-
-@media (max-width: 767px) {
-  	.ui.inverted.navbar{
-	}
-}
-
 .ui.vertical.menu{
 	margin-top: -15px !important;
 	width: 100%;
@@ -66,4 +33,27 @@ div.mobile.only.sixteen.wide.column {
     margin-right: 0;
     padding-left: 0;
     padding-right: 0;
+}
+
+* {
+    margin: 0;
+}
+html, body {
+    height: 100%;
+}
+.wrapper {
+    min-height: calc(100% - 60px); /* heigh of the footer + bottom and top margins must be substracted */
+    height: auto !important;
+    height: 100%;
+    margin: 10px auto -60px; /* the bottom margin is the negative value of the footer's height */
+}
+.footer, .push {
+    height: 50px; /* .push must be the same height as .footer */
+}
+.footer {
+    border-top: 1px solid rgba(34,36,38,.15);
+    text-align: center;
+    font-weight: 700;
+    padding-top: 10px;
+    margin-top: 10px;
 }
