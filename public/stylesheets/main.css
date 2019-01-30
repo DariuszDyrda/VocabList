@@ -56,3 +56,6 @@ html, body {
     padding-top: 10px;
     margin-top: 10px;
 }
+.cards {
+    word-break: break-all;
+}
