@@ -27,7 +27,7 @@
             </form>
         <% } %>
     </div>
-    <table class="ui celled table">
+    <table class="ui celled table" data-listid="<%= list._id %>">
         <thead>
             <tr>
                 <th>Word</th>
@@ -37,11 +37,15 @@
         <tbody>
             <% if(user && list.author.id.equals(user._id)) { %>
             <tr>
-                <form class="ui form" action="/index/<%= list._id %>/words" method="POST">
-                <td data-label="Word"><div class="ui input"><input type="text" name="word[original]" placeholder="Word"></div></td>
+                <form id="newWordForm" class="ui form" action="/index/<%= list._id %>/words" method="POST">
+                <td data-label="Word">
+                    <div class="ui input">
+                        <input id="newWordOriginal" type="text" name="word[original]" placeholder="Word">
+                    </div>
+                </td>
                 <td data-label="Translation">
                     <div class="ui input">
-                        <input type="text" name="word[translation]" placeholder="Translation">
+                        <input id="newWordTranslation" type="text" name="word[translation]" placeholder="Translation">
                     </div>
                     <button class="ui button" type="submit" style="float: right">Submit</button>
                 </td>
@@ -49,12 +53,12 @@
             </tr>
             <% } %>
             <% list.words.forEach(word => { %>
-            <tr class="wordRow">
+            <tr class="wordRow" data-wordid="<%= word._id %>">
                 <td data-label="Word"><span><%= word.original %></span></td>
                 <td data-label="Translation">
                     <span><%= word.translation %></span>
                     <% if(user && list.author.id.equals(user._id)) { %>
-                    <button class="ui button editButton" style="float: right" data-wordid="<%= word._id %>">Edit</button>
+                    <button class="ui button editButton" style="float: right">Edit</button>
                     <form action="/index/<%= list._id %>/words/<%= word._id %>?_method=DELETE" method="POST">
                         <button type="submit" class="ui button removeButton" style="float: right">Remove</button>
                     </form>

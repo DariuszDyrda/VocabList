@@ -14,7 +14,7 @@ router.post('/index/:id/words', middleware.checkListOwnership, (req, res) => {
         word.save();
         list.words.push(word);
         await list.save();
-        res.redirect(`/index/${list._id}`);
+        res.send({wordId: word._id});
       }
     });
   });
