@@ -114,7 +114,7 @@ $(function () {
           <td data-label="Translation">
               <span>${data.word.translation}</span>
               <button class="ui button editButton" style="float: right">Edit</button>
-              <form class="deleteForm" action="/index/${$("table").data('listid')}/words/${data.word._id}?_method=DELETE" method="POST">
+              <form class="deleteForm" action="/index/${$("table").data('listid')}/words/${data.word._id}" method="POST">
                   <button type="submit" class="ui button removeButton" style="float: right">Remove</button>
               </form>
           </td>
@@ -125,6 +125,7 @@ $(function () {
       word = null;
       translation = null;
       wordId = null;
+      removeFormAjax();
       dialog.dialog("close");
     });
   });
