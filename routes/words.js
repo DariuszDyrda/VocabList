@@ -20,11 +20,11 @@ router.post('/index/:id/words', middleware.checkListOwnership, (req, res) => {
   });
 
   router.put('/index/:id/words/:wordId', middleware.checkListOwnership, (req, res) => {
-    Word.findByIdAndUpdate(req.params.wordId, req.body.word, function(err, word) {
+    Word.findByIdAndUpdate(req.params.wordId, req.body.word,{new: true}, function(err, word) {
         if(err) {
             console.log(err);
         } else {
-            res.redirect("/index/"+req.params.id);
+            res.send({word: word});
         }
     })
   });
@@ -34,7 +34,7 @@ router.post('/index/:id/words', middleware.checkListOwnership, (req, res) => {
         if(err) {
             console.log(err);
         } else {
-            res.redirect("/index/"+req.params.id);
+            res.send({word: word});
         }
     })
   });
