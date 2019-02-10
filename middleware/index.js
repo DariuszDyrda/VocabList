@@ -5,6 +5,7 @@ middlewareObj.isLoggedIn = function(req, res, next) {
     if(req.isAuthenticated()) {
         return next();
     }
+    req.flash('error', 'Please login first');
     res.redirect("/login");
 };
 
@@ -22,6 +23,7 @@ middlewareObj.checkListOwnership = function(req, res, next) {
         }
     });
     } else {
+        req.flash('error', 'Please login first');
         res.redirect("/login");
     }
 };

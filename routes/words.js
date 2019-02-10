@@ -8,7 +8,8 @@ const middleware = require('../middleware/index');
 router.post('/index/:id/words', middleware.checkListOwnership, (req, res) => {
     List.findById(req.params.id, async (err, list) => {
       if(err) {
-        console.log(err);
+        req.flash("error", err.message);
+        res.redirect("back");
       } else {
         let word = new Word(req.body.word);
         word.save();
@@ -22,7 +23,8 @@ router.post('/index/:id/words', middleware.checkListOwnership, (req, res) => {
   router.put('/index/:id/words/:wordId', middleware.checkListOwnership, (req, res) => {
     Word.findByIdAndUpdate(req.params.wordId, req.body.word,{new: true}, function(err, word) {
         if(err) {
-            console.log(err);
+          req.flash("error", err.message);
+          res.redirect("back");
         } else {
             res.send({word: word});
         }
@@ -32,7 +34,8 @@ router.post('/index/:id/words', middleware.checkListOwnership, (req, res) => {
   router.delete('/index/:id/words/:wordId', middleware.checkListOwnership, (req, res) => {
     Word.findByIdAndRemove(req.params.wordId, function(err, word) {
         if(err) {
-            console.log(err);
+          req.flash("error", err.message);
+          res.redirect("back");
         } else {
             res.send({word: word});
         }

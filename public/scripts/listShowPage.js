@@ -35,6 +35,7 @@ $(function() {
     $('#newWordOriginal').val("");
     $('#newWordTranslation').val("");
     $('tbody').append(html);
+    $('#newWordOriginal').focus();
     removeFormAjax();
   });
 });

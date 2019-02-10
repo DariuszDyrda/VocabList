@@ -14,16 +14,15 @@ router.get('/', (req, res) => {
   res.render('landing');
 });
 router.get('/register', function (req, res) {
-  res.render('register', {});
+  res.render('register');
 });
 router.post('/register', function (req, res) {
   User.register(new User({
     username: req.body.username
   }), req.body.password, function (err, account) {
     if (err) {
-      return res.render('register', {
-        user: user
-      });
+      req.flash("error", err.message);
+      res.redirect("back");
     }
 
     passport.authenticate('local')(req, res, function () {
@@ -38,8 +37,13 @@ router.get('/login', function (req, res) {
   });
 });
 
-router.post('/login', passport.authenticate('local'), function (req, res) {
-  res.redirect('/index');
+router.post('/login', passport.authenticate('local', {
+  successRedirect: "/index",
+  failureRedirect: "/login",
+  failureFlash: true,
+  successFlash: 'Welcome!'
+}), function (req, res) {
+
 });
 
 router.get('/logout', function (req, res) {
@@ -65,7 +69,8 @@ router.get('/index', (req, res) => {
 router.get('/index/explore', (req, res) => {
   List.find({}, (err, lists) => {
     if (err) {
-      console.log(err);
+      req.flash("error", err.message);
+      res.redirect("back");
     } else {
       res.render('lists/explore', {
         lists: lists
@@ -74,12 +79,14 @@ router.get('/index/explore', (req, res) => {
   });
 });
 router.get('/index/new', middleware.isLoggedIn, (req, res) => {
+  
   res.render('lists/new');
 });
 router.post('/index', middleware.isLoggedIn, (req, res) => {
   List.create(req.body.list, async (err, list) => {
     if (err) {
-      console.log(err);
+      req.flash("error", err.message);
+      res.redirect("back");
     } else {
       list.author.id = req.user._id;
       list.author.username = req.user.username;
@@ -121,7 +128,8 @@ router.get('/index/:id/edit', middleware.checkListOwnership, (req, res) => {
 router.put('/index/:id', middleware.checkListOwnership, (req, res) => {
   List.findByIdAndUpdate(req.params.id, req.body.list, function (err, word) {
     if (err) {
-      console.log(err);
+      req.flash("error", err.message);
+      res.redirect("back");
     } else {
       res.redirect("/index/" + req.params.id);
     }
@@ -130,7 +138,8 @@ router.put('/index/:id', middleware.checkListOwnership, (req, res) => {
 router.delete('/index/:id', middleware.checkListOwnership, (req, res) => {
   List.findByIdAndRemove(req.params.id, function (err, word) {
     if (err) {
-      console.log(err);
+      req.flash("error", err.message);
+      res.redirect("back");
     } else {
       res.redirect("/index/");
     }
