@@ -16,6 +16,8 @@ const List = require('./models/List');
 const User = require('./models/User');
 const seedDb = require('./seeds');
 
+const DB_URL = process.env.vocabAppDb ? process.env.vocabAppDb : 'mongodb://localhost:27017/vocabapp'
+
 const app = express();
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -47,7 +49,7 @@ app.use(function (req, res, next) {
 app.use('/', listsRouter);
 app.use('/', wordsRouter);
 
-mongoose.connect(process.env.vocabAppDb, { useNewUrlParser: true });
+mongoose.connect(DB_URL, { useNewUrlParser: true });
 
 //seedDb();
 

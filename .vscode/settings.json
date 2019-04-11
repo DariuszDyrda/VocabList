@@ -1,4 +1,0 @@
-"terminal.integrated.env.linux": {
-    "vocabAppDb": "mongodb://admin:developer1@ds026658.mlab.com:26658/vocablist_dev",
-    "PORT": 3000
-}
